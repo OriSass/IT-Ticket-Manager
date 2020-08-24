@@ -22,6 +22,21 @@ app.get('/api/tickets', (request, response) => {
 app.post('api/tickets/:ticketId/done', (request, response) =>{
     const data = fs.readFileSync('data.json');
     let tickets = JSON.parse(data);
+    let index = tickets.indexOf(request.params.ticketId);
+    if(index !== -1){
+        tickets[index].done = true;
+        // update the json with fs?
+    }
+});
+
+app.post('api/tickets/:ticketId/undone', (request, response) =>{
+    const data = fs.readFileSync('data.json');
+    let tickets = JSON.parse(data);
+    let index = tickets.indexOf(request.params.ticketId);
+    if(index !== -1){
+        tickets[index].done = false;
+        // update the json with fs?
+    }
 });
 
 module.exports = app;
