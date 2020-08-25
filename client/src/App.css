@@ -1,0 +1,18 @@
+.ticket{
+    margin: 20px;
+    color: #224385;
+    padding-left: 20px;
+    border: 1px solid black;
+    box-shadow: 5px 10px #2d62ce;
+}
+.label{
+    background-color: #DAEFFE;
+    border-radius: 25%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.labelContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

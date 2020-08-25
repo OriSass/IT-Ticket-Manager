@@ -1,26 +1,24 @@
 const express = require('express');
 const app = express();
-const fs = require('fs');
-const { json } = require('express');
+const fs = require('fs').promises;
 
 
-
-app.get('/api/tickets', (request, response) => {
-    const data = fs.readFileSync('data.json');
-    let tickets = JSON.parse(data);
+app.get('/api/tickets', async (request, response) => {
+    const data = await fs.readFile('./data.json');
+    let tickets = await JSON.parse(data);
     let searchText = request.query.searchText;
     if(searchText){
         const resultTickets = tickets.filter((ticket) => {
-                    let titleLower = ticket["title"].toLowerCase();
-                    return titleLower.indexOf(searchText.toLowerCase()) !== -1
+            ticket.title.toLowerCase().includes(searchText.toLocaleLowerCase());
         });
         response.send(resultTickets);
+    }else{
+        response.send(tickets);
     }
-    response.send(tickets);
 });
 
-app.post('api/tickets/:ticketId/done', (request, response) =>{
-    const data = fs.readFileSync('data.json');
+app.post('api/tickets/:ticketId/done', async(request, response) =>{
+    const data = await fs.readFile('data.json');
     let tickets = JSON.parse(data);
     let index = tickets.indexOf(request.params.ticketId);
     if(index !== -1){
