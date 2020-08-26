@@ -14,37 +14,6 @@ function App() {
     const { data } = result;
     setTickets(data);
   }
-  function renderTickets(data) {
-    const ticketsHtml = data.map((ticket) => (
-      <Ticket
-        key={ticket.id}
-        ticket={ticket}
-        className="ticket"
-        hideTicket={hideTicket}
-      />
-    ));
-    return ticketsHtml;
-  }
-  useEffect(() => {
-    initializeTickets();
-  }, []);
-  async function searchTicket(searchText) {
-    const result = await axios.get(`/api/tickets?searchText=${searchText}`);
-    const { data } = result;
-    console.log(data);
-    setTickets(data);
-  }
-  function restoreHiddenTickets() {
-    setTickets(
-      tickets.map((ticket) => {
-        if (ticket.hidden = true) {
-          ticket.hidden = false;
-          return ticket;
-        }
-        return ticket;
-      }),
-    );
-  }
   function hideTicket(id) {
     setTickets(
       tickets.map((ticket) => {
@@ -57,15 +26,51 @@ function App() {
       }),
     );
   }
+  function renderTickets(data) {
+    if(data.length !== 0){
+      const ticketsHtml = data.map((ticket) => (
+        <Ticket
+          key={ticket.id}
+          ticket={ticket}
+          className="ticket"
+          hideTicket={hideTicket}
+        />
+      ));
+      return ticketsHtml;
+    }
+    else return <div><br /><br /><br /><h1>No results found</h1></div>
+  }
+  useEffect(() => {
+    initializeTickets();
+  }, []);
+  useEffect(() => {
+
+  }, [])
+  async function searchTicket(searchText) {
+    const result = await axios.get(`/api/tickets?searchText=${searchText}`);
+    const { data } = result;
+    setTickets(data);
+  }
+  function restoreHiddenTickets() {
+    setTickets(
+      tickets.map((ticket) => {
+        if (ticket.hidden === true) {
+          ticket.hidden = false;
+        }
+        return ticket;
+      }),
+    );
+  }
   return (
     <main>
       <SearchArea
-        onchange={(searchText) => searchTicket(searchText)}
-        resultsCount={tickets.length}
+        onchange={searchTicket}
+        resultsCount={visibleTickets.length}
         hiddenCount={hidden}
         restore={restoreHiddenTickets}
+        initialDataLength={tickets.length}
       />
-      <div>{renderTickets(visibleTickets)}</div>
+      <div class="main">{renderTickets(visibleTickets)}</div>
     </main>
   );
 }
