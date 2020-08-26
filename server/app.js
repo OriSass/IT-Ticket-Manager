@@ -7,9 +7,12 @@ app.get('/api/tickets', async (request, response) => {
     const data = await fs.readFile('./data.json');
     let tickets = await JSON.parse(data);
     let searchText = request.query.searchText;
+    console.log(searchText);
     if(searchText){
         const resultTickets = tickets.filter((ticket) => {
-            ticket.title.toLowerCase().includes(searchText.toLocaleLowerCase());
+            let lowerTitle = ticket.title.toLowerCase();
+            let lowerSearchText =searchText.toLocaleLowerCase();
+            return lowerTitle.includes(lowerSearchText);
         });
         response.send(resultTickets);
     }else{

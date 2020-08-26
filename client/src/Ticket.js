@@ -10,6 +10,7 @@ function Ticket(props){
     const creationTime = ticket.creationTime;
     const labels = ticket.labels;
     return <div className={props.className} key={id}>
+        <button className="hideTicketButton" onClick={() => props.hideTicket(id)}>Hide</button>
         <h3>{title}</h3>
         <p>{content}</p>
         <footer>By {userEmail} | time:{creationTime}</footer>
