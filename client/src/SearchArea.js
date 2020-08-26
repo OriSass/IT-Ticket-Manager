@@ -3,6 +3,7 @@ import './App.css';
 
 function SearchArea(props) {
   // add feature bold on text that was searched
+  console.log(props.initialDataLength);
   return (
     <div className="searchArea">
       <div>

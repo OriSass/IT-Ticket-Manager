@@ -13,6 +13,10 @@ app.get('/api/tickets', async (request, response) => {
       const lowerSearchText = searchText.toLocaleLowerCase();
       return lowerTitle.includes(lowerSearchText);
     });
+    const highLighted = resultTickets.map((ticket) => {
+        let index = ticket.indexOf(searchText);
+        
+    })
     response.send(resultTickets);
   } else {
     response.send(tickets);

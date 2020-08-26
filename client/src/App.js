@@ -7,12 +7,14 @@ import SearchArea from './SearchArea';
 
 function App() {
   const [tickets, setTickets] = useState([]);
+  const [initialDataLength, setInitialDataLength] = useState();
   const visibleTickets = tickets.filter((ticket) => Boolean(ticket.hidden) === false);
   const hidden = tickets.length - visibleTickets.length;
   async function initializeTickets() {
     const result = await axios.get('/api/tickets');
     const { data } = result;
     setTickets(data);
+    setInitialDataLength(data.length);
   }
   function hideTicket(id) {
     setTickets(
@@ -43,9 +45,7 @@ function App() {
   useEffect(() => {
     initializeTickets();
   }, []);
-  useEffect(() => {
-
-  }, [])
+  
   async function searchTicket(searchText) {
     const result = await axios.get(`/api/tickets?searchText=${searchText}`);
     const { data } = result;
@@ -68,7 +68,7 @@ function App() {
         resultsCount={visibleTickets.length}
         hiddenCount={hidden}
         restore={restoreHiddenTickets}
-        initialDataLength={tickets.length}
+        initialDataLength={initialDataLength}
       />
       <div class="main">{renderTickets(visibleTickets)}</div>
     </main>

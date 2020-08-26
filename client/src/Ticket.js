@@ -7,19 +7,20 @@ function Ticket(props) {
   const { title } = ticket;
   const { content } = ticket;
   const { userEmail } = ticket;
-  const { creationTime } = ticket;
+  let date = new Date(ticket.creationTime);
+    const creationTime = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
   const { labels } = ticket;
   return (
     <div className={props.className} key={id}>
       <button className="hideTicketButton" onClick={() => props.hideTicket(id)}>Hide</button>
-      <h3>{title}</h3>
-      <p>{content}</p>
+      <h3>Title: {title}</h3>
+      <p>Content: {content}</p>
       <footer>
-        By
+        <b>By:</b> {' '}
         {userEmail}
         {' '}
-        | time:
-        {creationTime}
+        |  <b>Time of creation:</b>
+        {' ' + creationTime}
       </footer>
       {labels !== undefined
         ? (
