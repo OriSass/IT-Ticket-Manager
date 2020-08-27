@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import Ticket from './components/Ticket';
 import './App.css';
 import Ticket from './Ticket';
 import SearchArea from './SearchArea';

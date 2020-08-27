@@ -13,11 +13,12 @@ app.get('/api/tickets', async (request, response) => {
       const lowerSearchText = searchText.toLocaleLowerCase();
       return lowerTitle.includes(lowerSearchText);
     });
+    // a $ sign is added in both sides of the searched text for emphasizing it on client side
     const highLighted = resultTickets.map((ticket) => {
       const lowerTitle = ticket.title.toLowerCase();
       const lowerSearchText = searchText.toLocaleLowerCase();
       const dividedTitle = lowerTitle.split(lowerSearchText);
-      dividedTitle[0] += (`$${lowerSearchText}$`);
+      dividedTitle[0] += (`$${lowerSearchText}$`); //
       ticket.title = dividedTitle[0] + dividedTitle[1]; // eslint-disable-line no-param-reassign
       return ticket;
     });
