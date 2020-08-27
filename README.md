@@ -5,7 +5,7 @@ In this project you will create a Ticket Manager Web Application, with React.js 
 
 
 [Project On Glitch](https://ticket-manager-o.glitch.me)
-![GIF](ui-testing-recording.gif)
+![GIF](ticket-manager-gify.gif)
 ## Instructions
 1. [Import](https://github.com/new/import) this repository into your account. Make sure to select the private option
 1. Clone your new repository to your computer
