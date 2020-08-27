@@ -51,13 +51,21 @@
     background-image: linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%);
 }
 .hideTicketButton{
+    visibility: hidden;
     border-radius: 20%;
+    width: 50px;
+    height: 50px;
+    font-size: medium;
 }
-.hideContainer{
-    display:flex;
-    flex-direction: row;
-    justify-content: flex-end;
+.ticket:hover .hideTicketButton{
+    visibility: visible;
 }
+
+h2{
+    margin-block-start: 0;
+    font-weight: 400;
+}
+
 .searchInput{
     width: 200px;
     height: 30px;
@@ -68,9 +76,54 @@
 .noResults{
     padding: 400px 0 400px 0;
 }
-
+.restoreButton{
+    background-color: rgb(59, 178, 199);
+    color: black;
+    border: 2px solid #0c6e6e;
+    transition-duration: 0.4s;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: large;
+}
+.restoreButton:hover {
+    font-size: large;
+    font-weight: 400;
+    background-color: #f0e3b4; /* Green */
+    color: rgb(53, 46, 17);
+  }
+.restoreArea{
+    display: flex;
+    width: 250px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    
+}
+.ticketHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.searchedText{
+    color: chocolate;
+}
+.contentStyle{
+    font-family: Comic Sans MS, Comic Sans, cursive
+}
+.titleStyle{
+    font-family: OCR A Std, monospace;
+}
+.hiddenResults{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-size: 1.5em;
+}
 #hideTicketsCounter{
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.9em;
+    margin: 20px;
 }
 @media screen and (min-width: 1000px) {
     .ticket{
@@ -82,3 +135,8 @@
         width: 40%;
     }    
 }
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Arvo:700);
+@import url(https://fonts.googleapis.com/css?family=Seaweed+Script);

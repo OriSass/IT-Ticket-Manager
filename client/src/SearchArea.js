@@ -18,12 +18,22 @@ function SearchArea(props) {
 
         {props.hiddenCount !== 0
           ? (
-            <div>
-              <span id="hideTicketsCounter">
-                {props.hiddenCount}
-              </span>
-              <span>  hidden tickets </span>
-              <button id="restoreHideTickets" onClick={() => props.restore()}>Restore</button>
+            <div className="restoreArea">
+              <div className="hiddenResults">
+                <span id="hideTicketsCounter">
+                  {props.hiddenCount}
+                </span>
+                <span>  hidden tickets </span>
+              </div>
+              <div>
+                <button
+                  className="restoreButton"
+                  id="restoreHideTickets"
+                  onClick={() => props.restore()}
+                >
+                  Restore
+                </button>
+              </div>
             </div>
           )
           : ''}

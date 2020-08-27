@@ -62,16 +62,19 @@ function App() {
     );
   }
   return (
-    <main>
-      <SearchArea
-        onchange={searchTicket}
-        resultsCount={visibleTickets.length}
-        hiddenCount={hidden}
-        restore={restoreHiddenTickets}
-        initialDataLength={initialDataLength}
-      />
-      <div className="main">{renderTickets(visibleTickets)}</div>
-    </main>
+    <>
+
+      <main>
+        <SearchArea
+          onchange={searchTicket}
+          resultsCount={visibleTickets.length}
+          hiddenCount={hidden}
+          restore={restoreHiddenTickets}
+          initialDataLength={initialDataLength}
+        />
+        <div className="main">{renderTickets(visibleTickets)}</div>
+      </main>
+    </>
   );
 }
 

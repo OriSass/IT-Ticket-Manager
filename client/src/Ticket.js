@@ -11,13 +11,13 @@ function Ticket(props) {
   }
   const markedTitle = titleArr.length !== 0
     ? (
-      <div>
+      <h2>
         {titleArr[0]}
-        <b>{titleArr[1]}</b>
+        <b className="searchedText">{titleArr[1]}</b>
         {titleArr[2]}
-      </div>
+      </h2>
     )
-    : <div>{title.split('$').join('')}</div>;
+    : <h2>{title.split('$').join('')}</h2>;
   const { content } = ticket;
   const { userEmail } = ticket;
   const date = new Date(ticket.creationTime);
@@ -25,13 +25,21 @@ function Ticket(props) {
   const { labels } = ticket;
   return (
     <div className={props.className} key={id}>
-      <div className="hideContainer">
-        <button className="hideTicketButton" onClick={() => props.hideTicket(id)}>Hide</button>
+      <div className="ticketHeader">
+        <div className="titleStyle">
+          {markedTitle}
+        </div>
+        <div>
+          <button
+            className="hideTicketButton"
+            onClick={() => props.hideTicket(id)}
+          >
+            Hide
+          </button>
+        </div>
       </div>
-      {markedTitle}
-
-      <p>
-        Content:
+      <p className="contentStyle">
+        <b>Content: </b>
         {content}
       </p>
       <footer>
