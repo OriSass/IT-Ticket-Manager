@@ -29,7 +29,7 @@ function App() {
     );
   }
   function renderTickets(data) {
-    if(data.length !== 0){
+    if (data.length !== 0) {
       const ticketsHtml = data.map((ticket) => (
         <Ticket
           key={ticket.id}
@@ -40,12 +40,12 @@ function App() {
       ));
       return ticketsHtml;
     }
-    else return <div><br /><br /><br /><h1>No results found</h1></div>
+    return <div className="noResults"><h1>No results found</h1></div>;
   }
   useEffect(() => {
     initializeTickets();
   }, []);
-  
+
   async function searchTicket(searchText) {
     const result = await axios.get(`/api/tickets?searchText=${searchText}`);
     const { data } = result;
@@ -70,7 +70,7 @@ function App() {
         restore={restoreHiddenTickets}
         initialDataLength={initialDataLength}
       />
-      <div class="main">{renderTickets(visibleTickets)}</div>
+      <div className="main">{renderTickets(visibleTickets)}</div>
     </main>
   );
 }

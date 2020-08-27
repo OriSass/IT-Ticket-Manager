@@ -14,10 +14,14 @@ app.get('/api/tickets', async (request, response) => {
       return lowerTitle.includes(lowerSearchText);
     });
     const highLighted = resultTickets.map((ticket) => {
-        let index = ticket.indexOf(searchText);
-        
-    })
-    response.send(resultTickets);
+      const lowerTitle = ticket.title.toLowerCase();
+      const lowerSearchText = searchText.toLocaleLowerCase();
+      const dividedTitle = lowerTitle.split(lowerSearchText);
+      dividedTitle[0] += (`$${lowerSearchText}$`);
+      ticket.title = dividedTitle[0] + dividedTitle[1]; // eslint-disable-line no-param-reassign
+      return ticket;
+    });
+    response.send(highLighted);
   } else {
     response.send(tickets);
   }

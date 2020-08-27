@@ -2,19 +2,19 @@ import React from 'react';
 import './App.css';
 
 function SearchArea(props) {
-  // add feature bold on text that was searched
-  console.log(props.initialDataLength);
   return (
     <div className="searchArea">
       <div>
-        {props.resultsCount < props.initialDataLength ?
-        <label className="results">
-          Got
-          {' '}
-          {props.resultsCount}
-          {' '}
-          results
-        </label>:<label className="results">All Tickets</label>}
+        {props.resultsCount < props.initialDataLength
+          ? (
+            <label className="results">
+              Got
+              {' '}
+              {props.resultsCount}
+              {' '}
+              results
+            </label>
+          ) : <label className="results">All Tickets</label>}
 
         {props.hiddenCount !== 0
           ? (
@@ -31,6 +31,7 @@ function SearchArea(props) {
       <div>
         <input
           id="searchInput"
+          className="searchInput"
           onChange={(event) => props.onchange(event.target.value)}
           placeholder="Search ticket..."
         />
