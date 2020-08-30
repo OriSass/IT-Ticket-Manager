@@ -1,5 +1,4 @@
 const express = require('express');
-
 const app = express();
 const fs = require('fs').promises;
 
@@ -28,24 +27,48 @@ app.get('/api/tickets', async (request, response) => {
   }
 });
 
-app.post('api/tickets/:ticketId/done', async (request) => {
+app.post('/api/tickets/:ticketId/done', async (request, response) => {
   const data = await fs.readFile('data.json');
   const tickets = JSON.parse(data);
-  const index = tickets.indexOf(request.params.ticketId);
-  if (index !== -1) {
-    tickets[index].done = true;
-    // update the json with fs?
-  }
+  let ticketId = request.params.ticketId;
+  let updatedTicket = {};
+  let updatedTickets = tickets.map(ticket => {
+    if(ticket.id == ticketId){
+      updatedTicket = ticket;
+      ticket.done = true;
+      return ticket;
+    }  
+    else return ticket;
+  });
+  fs.writeFile('data.json', JSON.stringify(updatedTickets), (err) => {
+    if (err) {
+      throw err;
+    };
+  });
+  console.log('The file has been saved!');
+  response.send(updatedTicket);
 });
 
-app.post('api/tickets/:ticketId/undone', (request) => {
-  const data = fs.readFileSync('data.json');
+app.post('/api/tickets/:ticketId/undone', async (request, response) => {
+  const data = await fs.readFile('data.json');
   const tickets = JSON.parse(data);
-  const index = tickets.indexOf(request.params.ticketId);
-  if (index !== -1) {
-    tickets[index].done = false;
-    // update the json with fs?
-  }
+  let ticketId = request.params.ticketId;
+  let updatedTicket = {};
+  let updatedTickets = tickets.map(ticket => {
+    if(ticket.id == ticketId){
+      updatedTicket = ticket;
+      ticket.done = false;
+      return ticket;
+    }  
+    else return ticket;
+  });
+  fs.writeFile('data.json', JSON.stringify(updatedTickets), (err) => {
+    if (err) {
+      throw err;
+    };
+  });
+  console.log('The file has been saved!');
+  response.send(updatedTicket);
 });
 
 module.exports = app;

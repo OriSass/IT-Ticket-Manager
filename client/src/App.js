@@ -5,10 +5,13 @@ import Ticket from './Ticket';
 import SearchArea from './SearchArea';
 
 function App() {
+
   const [tickets, setTickets] = useState([]);
   const [initialDataLength, setInitialDataLength] = useState();
-  const visibleTickets = tickets.filter((ticket) => Boolean(ticket.hidden) === false);
+
+  const visibleTickets = tickets.filter((ticket) => ticket.hidden === false);
   const hidden = tickets.length - visibleTickets.length;
+  
   async function initializeTickets() {
     const result = await axios.get('/api/tickets');
     const { data } = result;
