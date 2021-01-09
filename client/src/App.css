@@ -1,0 +1,142 @@
+.ticket{
+    margin: 20px;
+    color: #224385;
+    padding: 20px;
+    border: 1px solid black;
+    box-shadow: 5px 10px #2d62ce;
+    width: 60%;
+    overflow-wrap: break-word;
+    background-color: #f0e3b4;
+}
+.label{
+    background-color: #DAEFFE;
+    border-radius: 25%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.labelContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.searchArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #abe9cd;
+    background-image: linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%);
+}
+.results{
+    color:#d1d5dd;
+    font-size:5em;
+    text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+    
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    background-color: #abe9cd;
+    background-image: linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%);
+}
+.hideTicketButton{
+    visibility: hidden;
+    border-radius: 20%;
+    width: 50px;
+    height: 50px;
+    font-size: medium;
+}
+.ticket:hover .hideTicketButton{
+    visibility: visible;
+}
+
+h2{
+    margin-block-start: 0;
+    font-weight: 400;
+}
+
+.searchInput{
+    width: 200px;
+    height: 30px;
+    margin: 20px;
+    padding: 5px;
+    border-radius: 10%;
+}
+.noResults{
+    padding: 400px 0 400px 0;
+}
+.restoreButton{
+    background-color: rgb(59, 178, 199);
+    color: black;
+    border: 2px solid #0c6e6e;
+    transition-duration: 0.4s;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: large;
+}
+.restoreButton:hover {
+    font-size: large;
+    font-weight: 400;
+    background-color: #f0e3b4; /* Green */
+    color: rgb(53, 46, 17);
+  }
+.restoreArea{
+    display: flex;
+    width: 250px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    
+}
+.ticketHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.searchedText{
+    color: chocolate;
+}
+.contentStyle{
+    font-family: Comic Sans MS, Comic Sans, cursive
+}
+.titleStyle{
+    font-family: OCR A Std, monospace;
+}
+.hiddenResults{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-size: 1.5em;
+}
+#hideTicketsCounter{
+    font-size: 1.9em;
+    margin: 20px;
+}
+@media screen and (min-width: 1000px) {
+    .ticket{
+        width: 50%;
+    }    
+}
+@media screen and (min-width: 1300px) {
+    .ticket{
+        width: 40%;
+    }    
+}
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Arvo:700);
+@import url(https://fonts.googleapis.com/css?family=Seaweed+Script);

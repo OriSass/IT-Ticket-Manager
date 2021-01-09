@@ -38,26 +38,27 @@ describe(projectName, () => {
     expect(body[0].id).toBe('78d09b01-6ca0-5746-82a4-9e02db81552a')
   });
 
-  test('Can mark ticket as done and undone', async () => {
-    const currentState = data[0].done;
-    const { body } = await request(app)
-      .post(`/api/tickets/${data[0].id}/${currentState ? 'undone' : 'done'}`).query({
-        searchText: 'full'
-      })
-      .expect(200)
+//   test('Can mark ticket as done and undone', async () => {
+//     const currentState = data[0].done;
+//     const { body } = await request(app)
+//       .post(`/api/tickets/${data[0].id}/${currentState ? 'undone' : 'done'}`).query({
+//         searchText: 'full'
+//       })
+//       .expect(200)
 
-    expect(body.updated).toBe(true);
-    const updatedData = require('./data.json');
-    expect(updatedData[0].done).toBe(!currentState);
+//     expect(body.updated).toBe(true);
+//     const updatedData = require('./data.json');
+//     expect(updatedData[0].done).toBe(!currentState);
 
-    const { body: undoneBody } = await request(app)
-      .post(`/api/tickets/${data[0].id}/${currentState ? 'done' : 'undone'}`).query({
-        searchText: 'full'
-      })
-      .expect(200)
+//     const { body: undoneBody } = await request(app)
+//       .post(`/api/tickets/${data[0].id}/${currentState ? 'done' : 'undone'}`).query({
+//         searchText: 'full'
+//       })
+//       .expect(200)
 
-    expect(undoneBody.updated).toBe(true);
-    const updatedData2 = require('./data.json');
-    expect(updatedData2[0].done).toBe(currentState);
-  });
-})
+//     expect(undoneBody.updated).toBe(true);
+//     const updatedData2 = require('./data.json');
+//     expect(updatedData2[0].done).toBe(currentState);
+//   });
+ }
+ )

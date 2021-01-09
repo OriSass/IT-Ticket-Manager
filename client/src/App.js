@@ -1,12 +1,82 @@
-import React, {useEffect, useState} from 'react';
-import logo from './logo.svg';
-import Ticket from './components/Ticket'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './App.css';
+import Ticket from './Ticket';
+import SearchArea from './SearchArea';
 
 function App() {
+
+  const [tickets, setTickets] = useState([]);
+  const [initialDataLength, setInitialDataLength] = useState();
+
+  const visibleTickets = tickets.filter((ticket) => Boolean(ticket.hidden) === false);
+  const hidden = tickets.length - visibleTickets.length;
+  
+  async function initializeTickets() {
+    const result = await axios.get('/api/tickets');
+    const { data } = result;
+    setTickets(data);
+    setInitialDataLength(data.length);
+  }
+  function hideTicket(id) {
+    setTickets(
+      tickets.map((ticket) => {
+        if (ticket.id === id) {
+          ticket.hidden = true;
+          return ticket;
+        }
+
+        return ticket;
+      }),
+    );
+  }
+  function renderTickets(data) {
+    if (data.length !== 0) {
+      const ticketsHtml = data.map((ticket) => (
+        <Ticket
+          key={ticket.id}
+          ticket={ticket}
+          className="ticket"
+          hideTicket={hideTicket}
+        />
+      ));
+      return ticketsHtml;
+    }
+    return <div className="noResults"><h1>No results found</h1></div>;
+  }
+  useEffect(() => {
+    initializeTickets();
+  }, []);
+
+  async function searchTicket(searchText) {
+    const result = await axios.get(`/api/tickets?searchText=${searchText}`);
+    const { data } = result;
+    setTickets(data);
+  }
+  function restoreHiddenTickets() {
+    setTickets(
+      tickets.map((ticket) => {
+        if (ticket.hidden === true) {
+          ticket.hidden = false;
+        }
+        return ticket;
+      }),
+    );
+  }
   return (
-    <main>
-    </main>
+    <>
+
+      <main>
+        <SearchArea
+          onchange={searchTicket}
+          resultsCount={visibleTickets.length}
+          hiddenCount={hidden}
+          restore={restoreHiddenTickets}
+          initialDataLength={initialDataLength}
+        />
+        <div className="main">{renderTickets(visibleTickets)}</div>
+      </main>
+    </>
   );
 }
 

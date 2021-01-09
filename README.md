@@ -4,6 +4,8 @@ This repository includes a basic skeleton with automated tests, use it for you s
 In this project you will create a Ticket Manager Web Application, with React.js and Express
 
 
+[Project On Glitch](https://ticket-manager-o.glitch.me)
+![GIF](ticket-manager-gify.gif)
 ## Instructions
 1. [Import](https://github.com/new/import) this repository into your account. Make sure to select the private option
 1. Clone your new repository to your computer
