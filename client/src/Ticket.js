@@ -23,6 +23,7 @@ function Ticket(props) {
   const date = new Date(ticket.creationTime);
   const creationTime = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
   const { labels } = ticket;
+  const { done } = ticket;
   return (
     <div className={props.className} key={id}>
       <div className="ticketHeader">
